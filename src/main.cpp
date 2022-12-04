@@ -336,11 +336,11 @@ void draw_nav_ara_data(const char *input, size_t width, size_t height, Position 
       gScoreAra[coord_to_idx(from.x, from.y, width)] = 0;
       prevPath.clear();
       prevPath.resize(inpSize, { -1,-1 });
+      currentPathOnDraw.clear();
     }
 
     next = 30;
     eps -= eps_step;
-    currentPathOnDraw.clear();
     lastPath = find_path_ara_star(input, width, height, from, to, eps);
   }
   for (int i = 0; i < currentPathOnDraw.size(); ++i)
@@ -403,6 +403,7 @@ int main(int /*argc*/, const char ** /*argv*/)
       gScoreAra[coord_to_idx(from.x, from.y, dungWidth)] = 0;
       prevPath.clear();
       prevPath.resize(inpSize, { -1,-1 });
+      currentPathOnDraw.clear();
     }
     else if (IsMouseButtonPressed(1))
     {
@@ -416,6 +417,7 @@ int main(int /*argc*/, const char ** /*argv*/)
       gScoreAra[coord_to_idx(from.x, from.y, dungWidth)] = 0;
       prevPath.clear();
       prevPath.resize(inpSize, { -1,-1 });
+      currentPathOnDraw.clear();
     }
     if (IsKeyPressed(KEY_SPACE))
     {
@@ -423,6 +425,7 @@ int main(int /*argc*/, const char ** /*argv*/)
       spill_drunk_water(navGrid, dungWidth, dungHeight, 8, 10);
       from = dungeon::find_walkable_tile(navGrid, dungWidth, dungHeight);
       to = dungeon::find_walkable_tile(navGrid, dungWidth, dungHeight);
+      currentPathOnDraw.clear();
     }
     BeginDrawing();
       ClearBackground(BLACK);
